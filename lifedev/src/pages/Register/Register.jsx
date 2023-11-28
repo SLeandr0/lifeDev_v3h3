@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import React from 'react';
 import { useAuthentication } from '../../hooks/userAuthentication';
-import { confirmPasswordReset } from 'firebase/auth';
 
 
 const Register = () => {
@@ -9,7 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [confirmaSenha, setConfirmaSenha] = useState('')
-  const [erro, setError] = useState('')
+  const [error, setError] = useState('')
 
   const { createUser, error: authError, loading } = useAuthentication()
 
@@ -70,7 +69,7 @@ const Register = () => {
           type="password" 
           name="senha" 
           required
-          value={password}
+          value={senha}
           onChange={(e) => setSenha(e.target.value)}
           placeholder='Entre com uma senha segura'
           />
@@ -86,10 +85,11 @@ const Register = () => {
           placeholder='Confirme sua senha'
           />
         </label>
-        <button className='btn'>Cadastrar</button>
+        {!loading && <button className='btn'>Cadastrar</button>}
+        {loading && <button className='btn'>Aguarde</button>}
+        {error && <p className='error'>{error}</p>}
       </form>
     </div>
-
   )
 }
 

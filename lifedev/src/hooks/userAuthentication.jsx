@@ -32,7 +32,7 @@ export const useAuthentication = () =>{
             const { user } = await createUserWithEmailAndPassword(
                 auth,
                 data.email,
-                data.password
+                data.senha
             )
 
             await updateProfile(user, {
